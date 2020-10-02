@@ -48,3 +48,37 @@ for i = 1:(Nr/2 - (2*Gr+2*Tr))
     end
 end
 ```
+### Selection of Training, Guard cells and offset
+
+I selected these values by trial and error. It seems that finding a right offset value was critical in filtering out the false alarms.
+
+'''
+
+%% CFAR implementation
+
+%Slide Window through the complete Range Doppler Map
+
+%Select the number of Training Cells in both the dimensions.
+Tr = 3;
+Td = 12;
+
+%Select the number of Guard Cells in both dimensions around the Cell under 
+%test (CUT) for accurate estimation
+Gr = 2;
+Gd = 3;
+
+% offset the threshold by SNR value in dB
+offset = 22;
+
+%Create a vector to store noise_level for each iteration on training cells
+noise_level = zeros(1,1);
+'''
+
+### Steps taken to suppress the non-thresholded cells at the edges
+
+The CFAR process will generate a thresholded block, which is smaller than the Range Doppler Map as the CUT cannot be located at the edges of the matrix. Hence, a few cells will not be thresholded. To keep the map size the same, set those values to 0.
+
+'''
+signalCFAR = zeros(Nr/2,Nd);
+'''
+
