@@ -52,7 +52,7 @@ end
 
 I selected these values by trial and error. It seems that finding a right offset value was critical in filtering out the false alarms.
 
-'''
+```
 
 %% CFAR implementation
 
@@ -72,13 +72,34 @@ offset = 22;
 
 %Create a vector to store noise_level for each iteration on training cells
 noise_level = zeros(1,1);
-'''
+```
+
+#### Example 1
+
+```
+Velocity = 45;           % m/s
+InitialRange = 126;      % m
+```
+
+![CFAR1](./images/CFAR_Offset_22_ex1.jpg)
+
+
+#### Example 2
+
+```
+Velocity = -28;         % m/s
+InitialRange = 75;      % m
+```
+
+![CFAR1](./images/CFAR_Offset_22_ex2.jpg)
+
+
 
 ### Steps taken to suppress the non-thresholded cells at the edges
 
 The CFAR process will generate a thresholded block, which is smaller than the Range Doppler Map as the CUT cannot be located at the edges of the matrix. Hence, a few cells will not be thresholded. To keep the map size the same, set those values to 0.
 
-'''
+```
 signalCFAR = zeros(Nr/2,Nd);
-'''
+```
 
